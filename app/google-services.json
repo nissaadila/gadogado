@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "331664922801",
+    "project_id": "gadogado-5a13c",
+    "storage_bucket": "gadogado-5a13c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331664922801:android:191141a22c99d5dca46a90",
+        "android_client_info": {
+          "package_name": "com.example.gadogado"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331664922801-jvov6dmoi8vfuijeeqo7l69c8sjtj65l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPIxAciKL968G8v-EKRKZtLmssU0sVcUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331664922801-jvov6dmoi8vfuijeeqo7l69c8sjtj65l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
