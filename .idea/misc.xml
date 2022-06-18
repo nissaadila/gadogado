@@ -3,15 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/drawable/radio_button_culinerhunter.xml" value="0.151" />
         <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/drawable/round_button.xml" value="0.151" />
         <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/drawable/round_register_login.xml" value="0.151" />
-        <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/drawable/status_background_selected.xml" value="0.151" />
-        <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/drawable/status_text_selected.xml" value="0.1" />
-        <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/drawable/status_unchecked_background.xml" value="0.151" />
         <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/layout/activity_login.xml" value="0.1796875" />
         <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
-        <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/layout/activity_register.xml" value="0.22" />
+        <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/layout/activity_register.xml" value="0.14666666666666667" />
       </map>
     </option>
   </component>
