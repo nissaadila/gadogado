@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="30dp"
             android:text="Create Account"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="40dp"
             android:text="Username"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text="Email"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text="Password"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -76,29 +76,61 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/round_register_login" />
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="20dp">
-            <!--belumberes-->
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Culiner Hunter"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Restaurant"/>
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:text="Sign in as..."
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
-        </LinearLayout>
+            <RadioGroup
+                android:id="@+id/radioButtonStatusRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkedButton="@id/status_culiner_hunter"
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp">
+
+                <RadioButton
+                    android:id="@+id/status_culiner_hunter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Culiner Hunter"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:width="180dp"
+                    android:height="132dp"
+                    android:textSize="18sp"
+                    android:button="@android:color/white"
+                    android:drawableTop="@drawable/icon_culiner_hunter"
+                    android:background="@drawable/status_background_selected"/>
+
+                <RadioButton
+                    android:id="@+id/status_restaurant"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Restaurant"
+                    android:width="180dp"
+                    android:height="132dp"
+                    android:textSize="18sp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:drawableTop="@drawable/icon_restaurant"
+                    android:button="@color/gray"
+                    android:background="@drawable/status_background_selected"/>
+
+            </RadioGroup>
 
         <Button
             android:id="@+id/buttonRegister"
             android:layout_width="375dp"
             android:layout_height="49dp"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="35dp"
             android:background="@drawable/round_button"
             android:text="Create Account" />
 
@@ -106,7 +138,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="wrap_content"

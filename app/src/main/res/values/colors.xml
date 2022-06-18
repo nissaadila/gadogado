@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="backgroundregisterdanlogin">#9C162E</color>
     <color name="backgroundbutton">#5C162E</color>
+    <color name="gray">#BFBFBF</color>
 </resources>
