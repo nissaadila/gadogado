@@ -6,35 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.AddFragment">
 
-    <ImageButton
-        android:id="@+id/back_button_addPage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginTop="30sp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitStart"
-        android:src="@drawable/ic_back"
-        app:tint="#000000" />
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
+        android:layout_marginLeft="-90dp"
         android:src="@drawable/logo" />
 
     <ImageButton
         android:id="@+id/upload_button_addPage"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="end"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="18sp"
         android:layout_marginRight="18dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitStart"
+        android:background="@drawable/roundedcorner"
+        android:scaleType="centerInside"
         android:src="@drawable/ic_upload"
-        app:tint="#2E8A1F" />
+        app:tint="@color/white" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -43,7 +33,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70sp"
+            android:layout_marginTop="75sp"
             android:orientation="vertical">
 
             <ImageView
