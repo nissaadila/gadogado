@@ -6,14 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText usernameText, emailText, passwordText;
     TextView textViewLogin;
     Button buttonRegister;
+    RadioGroup radioGroupStatus;
+    RadioButton radioButtonStatusSelected;
 
-    //tambah radio button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(moveLogin);
         });
 
-        buttonRegister.setOnClickListener(v ->{
+        buttonRegister.setOnClickListener(v -> {
             validasi();
 
             //firebase
@@ -60,6 +63,8 @@ public class RegisterActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.editTextPasswordRegister);
         textViewLogin = findViewById(R.id.buttonLoginDariRegister);
         buttonRegister = findViewById(R.id.buttonRegister);
+        radioGroupStatus = findViewById(R.id.radioGroupStatusRegister);
+        radioGroupStatus.clearCheck();
 
     }
 }
