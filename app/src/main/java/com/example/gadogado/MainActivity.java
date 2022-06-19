@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.gadogado.Fragments.AddFragment;
 import com.example.gadogado.Fragments.HomeFragment;
 import com.example.gadogado.Fragments.ProfileFragment;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 if(model.getId() == ID_HOME){
                     switchFragment(new HomeFragment());
                 } else if(model.getId() == ID_ADD){
-                    switchFragment(new HomeFragment());
+                    switchFragment(new AddFragment());
                 } else if (model.getId() == ID_PROFILE){
                     switchFragment(new ProfileFragment());
                 }
