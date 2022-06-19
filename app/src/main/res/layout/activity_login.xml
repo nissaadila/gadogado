@@ -23,12 +23,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="60dp"
-        android:text="Email"
+        android:text="Username"
         android:textColor="@color/white"
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/editTextEmailLogin"
+        android:id="@+id/editTexUsernameLogin"
         android:layout_width="375dp"
         android:layout_height="49dp"
         android:layout_marginStart="20dp"

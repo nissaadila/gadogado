@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText emailTxt, passwordTxt;
+    EditText usernameTxt, passwordTxt;
     TextView textViewRegister;
     Button buttonLogin;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://gadogado-5a13c-default-rtdb.firebaseio.com/");
@@ -42,12 +42,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void validasi(){
-        String email = emailTxt.getText().toString();
+        String username = usernameTxt.getText().toString();
         String password = passwordTxt.getText().toString();
 
-        if(email.isEmpty()){
-            emailTxt.setError("Email must field");
-            emailTxt.requestFocus();
+        if(username.isEmpty()){
+            usernameTxt.setError("username must field");
+            usernameTxt.requestFocus();
         }
         else if(password.isEmpty()){
             passwordTxt.setError("Password must field");
@@ -58,9 +58,9 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     // check if username exist in firebase database
-                    if (snapshot.hasChild(email)){
+                    if (snapshot.hasChild(username)){
                         // mobile is exist in firebase database
-                        String getPassword = snapshot.child(email).child("password").getValue(String.class);
+                        String getPassword = snapshot.child(username).child("password").getValue(String.class);
                         if(getPassword.equals(password)){
                             Toast.makeText(LoginActivity.this, "Success Login", Toast.LENGTH_SHORT).show();
                             Intent moveHomePage = new Intent(LoginActivity.this, MainActivity.class);
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void init(){
-        emailTxt = findViewById(R.id.editTextEmailLogin);
+        usernameTxt = findViewById(R.id.editTexUsernameLogin);
         passwordTxt = findViewById(R.id.editTextPasswordLogin);
         textViewRegister = findViewById(R.id.buttonRegisterDariLogin);
         buttonLogin = findViewById(R.id.buttonLogin);
