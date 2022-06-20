@@ -3,28 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/drawable/ic_add.xml" value="0.1" />
+        <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/drawable/ic_splash_screen_gagogado.xml" value="0.1505" />
         <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/drawable/round_button.xml" value="0.151" />
         <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/drawable/round_register_login.xml" value="0.151" />
         <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/layout/activity_login.xml" value="0.1796875" />
         <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
-        <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/layout/activity_register.xml" value="0.14666666666666667" />
-        <entry key="..\:/PIKA/AndroidStudioProject/gadogado/app/src/main/res/drawable/ic_add.xml" value="0.186" />
-        <entry key="..\:/PIKA/AndroidStudioProject/gadogado/app/src/main/res/drawable/ic_home.xml" value="0.186" />
-        <entry key="..\:/PIKA/AndroidStudioProject/gadogado/app/src/main/res/drawable/ic_logo.xml" value="0.186" />
-        <entry key="..\:/PIKA/AndroidStudioProject/gadogado/app/src/main/res/drawable/round_button.xml" value="0.1" />
-        <entry key="..\:/PIKA/AndroidStudioProject/gadogado/app/src/main/res/drawable/round_register_login.xml" value="0.186" />
-        <entry key="..\:/PIKA/AndroidStudioProject/gadogado/app/src/main/res/drawable/roundedcorner.xml" value="0.224" />
-        <entry key="..\:/PIKA/AndroidStudioProject/gadogado/app/src/main/res/layout/activity_login.xml" value="0.358695652173913" />
-        <entry key="..\:/PIKA/AndroidStudioProject/gadogado/app/src/main/res/layout/activity_main.xml" value="0.17831813576494426" />
-        <entry key="..\:/PIKA/AndroidStudioProject/gadogado/app/src/main/res/layout/activity_register.xml" value="0.358695652173913" />
-        <entry key="..\:/PIKA/AndroidStudioProject/gadogado/app/src/main/res/layout/fragment_add.xml" value="0.358695652173913" />
-        <entry key="..\:/PIKA/AndroidStudioProject/gadogado/app/src/main/res/layout/fragment_home.xml" value="0.24635416666666668" />
-        <entry key="..\:/PIKA/AndroidStudioProject/gadogado/app/src/main/res/layout/fragment_profile_user.xml" value="0.23229166666666667" />
-        <entry key="..\:/Users/maevy/StudioProjects/gadogado/app/src/main/res/drawable/recycler_layout.xml" value="0.1955" />
-        <entry key="..\:/Users/maevy/StudioProjects/gadogado/app/src/main/res/drawable/round_button.xml" value="0.1955" />
-        <entry key="..\:/Users/maevy/StudioProjects/gadogado/app/src/main/res/drawable/round_button_2.xml" value="0.1955" />
-        <entry key="..\:/Users/maevy/StudioProjects/gadogado/app/src/main/res/layout/fragment_profile_user.xml" value="0.264" />
-        <entry key="..\:/Users/maevy/StudioProjects/gadogado/app/src/main/res/layout/post_item.xml" value="0.2" />
+        <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/File Android Studio LEC/gadogado/app/src/main/res/layout/activity_splash_screen.xml" value="0.1796875" />
       </map>
     </option>
   </component>

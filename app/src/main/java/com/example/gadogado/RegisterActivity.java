@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +23,9 @@ public class RegisterActivity extends AppCompatActivity {
     EditText usernameText, emailText, passwordText;
     TextView textViewLogin;
     Button buttonRegister;
-    RadioGroup radioGroupStatus;
-    RadioButton radioButtonStatusSelected;
+    String stringCulinerOrRestaurant;
+    RadioGroup culinerOrRestaurant;
+    RadioButton culineOrRestaurantOption;
 
     //create object of DataReference class to access firebase'realtime database
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://gadogado-5a13c-default-rtdb.firebaseio.com/");
@@ -34,6 +36,23 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         init();
 
+        culinerOrRestaurant.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                culineOrRestaurantOption = culinerOrRestaurant.findViewById(checkedId);
+                switch (checkedId){
+                    case R.id.status_culiner_hunter:
+                        stringCulinerOrRestaurant = culineOrRestaurantOption.getText().toString().trim();
+                        break;
+                    case R.id.status_restaurant:
+                        stringCulinerOrRestaurant = culineOrRestaurantOption.getText().toString().trim();
+                        break;
+                    default:
+                }
+            }
+
+        });
+
         textViewLogin.setOnClickListener(v -> {
             Intent moveLogin = new Intent(RegisterActivity.this,LoginActivity.class);
             startActivity(moveLogin);
@@ -41,9 +60,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         buttonRegister.setOnClickListener(v -> {
             validasi();
-
-            //firebase
-
         });
     }
 
@@ -57,12 +73,16 @@ public class RegisterActivity extends AppCompatActivity {
             usernameText.setError("Username must field");
             usernameText.requestFocus();
         }
-        if (email.isEmpty()){
-            emailText.setError("Username must field");
+        else if (email.isEmpty()){
+            emailText.setError("Email must field");
             emailText.requestFocus();
         }
-        if (password.isEmpty()){
-            passwordText.setError("Username must field");
+        else if(!email.endsWith(".com")){
+            emailText.setError("Email must endswith .com");
+            emailText.requestFocus();
+        }
+        else if (password.isEmpty()){
+            passwordText.setError("password must field");
             passwordText.requestFocus();
         }
         //sending data to firebase
@@ -72,15 +92,15 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.hasChild(username)){
-                        Toast.makeText(RegisterActivity.this, "username is already registered", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterActivity.this, "Isername is already registered", Toast.LENGTH_SHORT).show();
 
                     }
                     else{
                         databaseReference.child("users").child(username).child("email").setValue(email);
                         databaseReference.child("users").child(username).child("password").setValue(password);
-
+                        databaseReference.child("users").child(username).child("status").setValue(stringCulinerOrRestaurant);
                         //show a success
-                        Toast.makeText(RegisterActivity.this, "User registered successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }
@@ -100,8 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.editTextPasswordRegister);
         textViewLogin = findViewById(R.id.buttonLoginDariRegister);
         buttonRegister = findViewById(R.id.buttonRegister);
-        radioGroupStatus = findViewById(R.id.radioGroupStatusRegister);
-        radioGroupStatus.clearCheck();
+        culinerOrRestaurant = findViewById(R.id.radioGroupStatusRegister);
 
     }
 }
