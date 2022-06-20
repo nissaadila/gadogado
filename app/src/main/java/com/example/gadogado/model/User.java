@@ -4,11 +4,15 @@ public class User{
     private String usernameUser;
     private  String emailUser;
     private String passwordUser;
+    private String ProfilePicPath;
+    private int accountStatus;
 
-    public User(String usernameUser, String emailUser, String passwordUser) {
+    public User(String usernameUser, String emailUser, String passwordUser, String profilePicPath, int accountStatus) {
         this.usernameUser = usernameUser;
         this.emailUser = emailUser;
         this.passwordUser = passwordUser;
+        ProfilePicPath = profilePicPath;
+        this.accountStatus = accountStatus;
     }
 
     public String getUsernameUser() {
@@ -33,5 +37,21 @@ public class User{
 
     public void setPasswordUser(String passwordUser) {
         this.passwordUser = passwordUser;
+    }
+
+    public String getProfilePicPath() {
+        return ProfilePicPath;
+    }
+
+    public void setProfilePicPath(String profilePicPath) {
+        ProfilePicPath = profilePicPath;
+    }
+
+    public int getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(int accountStatus) {
+        this.accountStatus = accountStatus;
     }
 }
