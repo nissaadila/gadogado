@@ -10,12 +10,14 @@
     android:layout_gravity="center">
 
     <ImageView
+        android:id="@+id/logoApp"
         android:layout_width="220dp"
         android:layout_height="225dp"
         android:src="@drawable/logo_gadogado"
         android:layout_gravity="center"
         android:layout_marginTop="160dp"/>
     <ImageView
+        android:id="@+id/nameLogoApp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/nama_logo"
