@@ -23,8 +23,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText usernameText, emailText, passwordText;
     TextView textViewLogin;
     Button buttonRegister;
-//    RadioGroup radioGroupStatus;
-//    RadioButton radioButtonStatusSelected;
     String stringCulinerOrRestaurant;
     RadioGroup culinerOrRestaurant;
     RadioButton culineOrRestaurantOption;
@@ -70,30 +68,23 @@ public class RegisterActivity extends AppCompatActivity {
         String username = usernameText.getText().toString();
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
-        //String status;
-//        String culinerHunter = radioButtonStatusCulinerHunter.getText().toString();
-//        String restaurant = radioButtonStatusRestaurant.getText().toString();
 
         if (username.isEmpty()){
             usernameText.setError("Username must field");
             usernameText.requestFocus();
         }
-        if (email.isEmpty()){
+        else if (email.isEmpty()){
             emailText.setError("Email must field");
             emailText.requestFocus();
         }
-        if (password.isEmpty()){
+        else if(!email.endsWith(".com")){
+            emailText.setError("Email must endswith .com");
+            emailText.requestFocus();
+        }
+        else if (password.isEmpty()){
             passwordText.setError("password must field");
             passwordText.requestFocus();
         }
-//        if(radioGroupStatus.getCheckedRadioButtonId()==-1){
-//            Toast.makeText(RegisterActivity.this,"Select your status", Toast.LENGTH_SHORT).show();
-//            radioButtonStatusSelected.setError("Status must required");
-//            radioButtonStatusSelected.requestFocus();
-//        }
-//        if(culinerHunter.isEmpty() && restaurant.isEmpty()){
-//            Toast.makeText(RegisterActivity.this,"Please select status", Toast.LENGTH_SHORT);
-//        }
         //sending data to firebase
         else{
 
@@ -101,17 +92,15 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.hasChild(username)){
-                        Toast.makeText(RegisterActivity.this, "username is already registered", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterActivity.this, "Isername is already registered", Toast.LENGTH_SHORT).show();
 
                     }
                     else{
                         databaseReference.child("users").child(username).child("email").setValue(email);
                         databaseReference.child("users").child(username).child("password").setValue(password);
-//                        databaseReference.child("users").child(username).child("statusculiner").setValue(culinerHunter);
-//                        databaseReference.child("users").child(username).child("statusrestaurant").setValue(restaurant);
                         databaseReference.child("users").child(username).child("status").setValue(stringCulinerOrRestaurant);
                         //show a success
-                        Toast.makeText(RegisterActivity.this, "User registered successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }
@@ -131,12 +120,6 @@ public class RegisterActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.editTextPasswordRegister);
         textViewLogin = findViewById(R.id.buttonLoginDariRegister);
         buttonRegister = findViewById(R.id.buttonRegister);
-//        radioGroupStatus = findViewById(R.id.radioGroupStatusRegister);
-//        radioGroupStatus.clearCheck();
-//        int selectedStatus = radioGroupStatus.getCheckedRadioButtonId();
-//        radioButtonStatusSelected = findViewById(selectedStatus);
-//        radioButtonStatusCulinerHunter = findViewById(R.id.status_culiner_hunter);
-//        radioButtonStatusRestaurant = findViewById(R.id.status_restaurant);
         culinerOrRestaurant = findViewById(R.id.radioGroupStatusRegister);
 
     }
