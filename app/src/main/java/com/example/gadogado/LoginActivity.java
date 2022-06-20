@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView textViewRegister;
     Button buttonLogin;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://gadogado-5a13c-default-rtdb.firebaseio.com/");
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     private void validasi(){
         String username = usernameTxt.getText().toString();
         String password = passwordTxt.getText().toString();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         if(username.isEmpty()){
             usernameTxt.setError("username must field");
@@ -62,6 +66,8 @@ public class LoginActivity extends AppCompatActivity {
                         // mobile is exist in firebase database
                         String getPassword = snapshot.child(username).child("password").getValue(String.class);
                         if(getPassword.equals(password)){
+                            editor.putString("username", username);
+                            editor.apply();
                             Toast.makeText(LoginActivity.this, "Success Login", Toast.LENGTH_SHORT).show();
                             Intent moveHomePage = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(moveHomePage);
@@ -89,5 +95,6 @@ public class LoginActivity extends AppCompatActivity {
         passwordTxt = findViewById(R.id.editTextPasswordLogin);
         textViewRegister = findViewById(R.id.buttonRegisterDariLogin);
         buttonLogin = findViewById(R.id.buttonLogin);
+        sharedPreferences = getSharedPreferences("LOG_IN",MODE_PRIVATE);
     }
 }

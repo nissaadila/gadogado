@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
@@ -23,12 +25,17 @@ public class MainActivity extends AppCompatActivity {
     private final int ID_HOME  = 1;
     private final int ID_ADD  = 2;
     private final int ID_PROFILE  = 3;
+    String username;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sPref = getSharedPreferences("LOG_IN", MODE_PRIVATE);
+        username = sPref.getString("username", null);
+        Log.wtf("username", username);
 
         switchFragment(new HomeFragment());
         MeowBottomNavigation bottomNavigation = findViewById(R.id.bottom_navigation);
@@ -43,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 if(model.getId() == ID_HOME){
                     switchFragment(new HomeFragment());
                 } else if(model.getId() == ID_ADD){
-                    switchFragment(new AddFragment());
+                    switchFragment(new AddFragment(username));
                 } else if (model.getId() == ID_PROFILE){
                     switchFragment(new ProfileFragment());
                 }
