@@ -2,7 +2,7 @@ package com.example.gadogado.model;
 
 public class User{
     private String usernameUser;
-    private  String emailUser;
+    private String emailUser;
     private String passwordUser;
     private String ProfilePicPath;
     private String accountStatus;

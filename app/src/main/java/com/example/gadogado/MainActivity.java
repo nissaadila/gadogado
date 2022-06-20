@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private final int ID_HOME  = 1;
     private final int ID_ADD  = 2;
     private final int ID_PROFILE  = 3;
-    String username;
+    String username, status;
 
 
     @Override
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sPref = getSharedPreferences("LOG_IN", MODE_PRIVATE);
         username = sPref.getString("username", null);
+        status = sPref.getString("status", null);
 
         switchFragment(new HomeFragment());
         MeowBottomNavigation bottomNavigation = findViewById(R.id.bottom_navigation);
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if(model.getId() == ID_ADD){
                     switchFragment(new AddFragment(username));
                 } else if (model.getId() == ID_PROFILE){
-                    switchFragment(new ProfileFragment());
+                    switchFragment(new ProfileFragment(username, status));
                 }
                 return null;
             }

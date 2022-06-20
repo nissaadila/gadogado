@@ -96,8 +96,10 @@ public class LoginActivity extends AppCompatActivity {
                     if (snapshot.hasChild(username)){
                         // mobile is exist in firebase database
                         String getPassword = snapshot.child(username).child("password").getValue(String.class);
+                        String status = snapshot.child(username).child("status").getValue(String.class);
                         if(getPassword.equals(password)){
                             editor.putString("username", username);
+                            editor.putString("status", status);
                             editor.apply();
                             Toast.makeText(LoginActivity.this, "Success Login", Toast.LENGTH_SHORT).show();
                             Intent moveHomePage = new Intent(LoginActivity.this, MainActivity.class);
