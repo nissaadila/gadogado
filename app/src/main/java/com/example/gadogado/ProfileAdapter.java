@@ -55,7 +55,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView postPic;
-        Integer postId;
+        String postId;
         String desc;
         Integer like;
         String postDate;

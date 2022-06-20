@@ -1,19 +1,15 @@
 package com.example.gadogado.Fragments;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.provider.MediaStore;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +19,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.gadogado.MainActivity;
 import com.example.gadogado.R;
+import com.example.gadogado.model.Post;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,22 +36,21 @@ import com.google.firebase.storage.UploadTask;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.UUID;
 
 public class AddFragment extends Fragment {
     ImageButton upload;
     ImageView photo;
     EditText desc;
+    Post post = new Post();
 
     private String username, date;
     public Uri imageUri = null;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://gadogado-5a13c-default-rtdb.firebaseio.com/");
+    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://gadogado-5a13c-default-rtdb.firebaseio.com/");
 
     public AddFragment(String username) {
         this.username = username;
-        Log.wtf("username", username);
     }
 
     @Override
@@ -61,6 +59,7 @@ public class AddFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_add, container, false);
         init(view);
+
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,18 +76,36 @@ public class AddFragment extends Fragment {
                 return;
             }
             if(imageUri == null){
-                Toast.makeText(getContext(), "Please Choose a Photo!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Please Select Photo!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-//            databaseReference.child("users").child(username).child("post").child(randomKey).child("description").setValue(desc);
-//            databaseReference.child("users").child(username).child("post").child(randomKey).child("like").setValue(0);
-//            databaseReference.child("users").child(username).child("post").child(randomKey).child("postDate").setValue(date);
-//            uploadPhoto();
+            saveToFireBase();
+            uploadPhoto();
 
+            DatabaseReference postReference = databaseReference.child("users").child(username).child("post").push();
+            post.setImage("");
+            postReference.setValue(post);
+            String key = postReference.getKey();
+            post.setPostId(key);
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    startActivity(intent);
+                }
+            }, 5000);
         });
 
         return view;
+    }
+
+    private void saveToFireBase() {
+        post.setDesc(desc.getText().toString());
+        post.setLike(0);
+        post.setPostDate(date);
     }
 
     private void init(View view){
@@ -116,14 +133,23 @@ public class AddFragment extends Fragment {
         progressDialog.setTitle("Uploading Image...");
         progressDialog.show();
 
-        final String randomKey = UUID.randomUUID().toString();
-        StorageReference mountainsRef = storageReference.child("images/" + randomKey);
+        StorageReference imageRef = storageReference.child("images/" + username + "/" + imageUri.getLastPathSegment());
 
-        mountainsRef.putFile(imageUri)
+        imageRef.putFile(imageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         progressDialog.dismiss();
+                        imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String photoUrl = uri.toString();
+                                Log.wtf("image url", photoUrl);
+                                databaseReference.child("users").child(username).child("post").child(post.getPostId()).child("image").setValue(photoUrl);
+                                post.setImage(photoUrl);
+                            }
+                        });
+
                         Snackbar.make(getActivity().findViewById(android.R.id.content), "Image Uploaded!", Snackbar.LENGTH_LONG).show();
                     }
                 })

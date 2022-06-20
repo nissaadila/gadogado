@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sPref = getSharedPreferences("LOG_IN", MODE_PRIVATE);
         username = sPref.getString("username", null);
-        Log.wtf("username", username);
 
         switchFragment(new HomeFragment());
         MeowBottomNavigation bottomNavigation = findViewById(R.id.bottom_navigation);
