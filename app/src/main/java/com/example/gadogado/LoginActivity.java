@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
         auth();
 
-        textViewRegister.setOnClickListener(v ->{
+        textViewRegister.setOnClickListener(v -> {
             Intent moveRegister = new Intent(LoginActivity.this,RegisterActivity.class);
             startActivity(moveRegister);
         });
