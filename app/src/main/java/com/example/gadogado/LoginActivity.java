@@ -12,6 +12,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     Button buttonLogin;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://gadogado-5a13c-default-rtdb.firebaseio.com/");
     SharedPreferences sharedPreferences;
+    FirebaseUser currentUser;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         init();
 
+        auth();
 
         textViewRegister.setOnClickListener(v ->{
             Intent moveRegister = new Intent(LoginActivity.this,RegisterActivity.class);
@@ -42,6 +52,27 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    private void auth() {
+        if (currentUser == null) {
+            mAuth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        Log.wtf("auth", "Signed in Anonymously");
+                    } else {
+                        Log.wtf("auth", "Faild to signed in");
+                    }
+                }
+            });
+        }
     }
 
     private void validasi(){
@@ -96,5 +127,7 @@ public class LoginActivity extends AppCompatActivity {
         textViewRegister = findViewById(R.id.buttonRegisterDariLogin);
         buttonLogin = findViewById(R.id.buttonLogin);
         sharedPreferences = getSharedPreferences("LOG_IN",MODE_PRIVATE);
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
     }
 }
