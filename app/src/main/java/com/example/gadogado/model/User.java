@@ -5,9 +5,9 @@ public class User{
     private  String emailUser;
     private String passwordUser;
     private String ProfilePicPath;
-    private int accountStatus;
+    private String accountStatus;
 
-    public User(String usernameUser, String emailUser, String passwordUser, String profilePicPath, int accountStatus) {
+    public User(String usernameUser, String emailUser, String passwordUser, String profilePicPath, String accountStatus) {
         this.usernameUser = usernameUser;
         this.emailUser = emailUser;
         this.passwordUser = passwordUser;
@@ -47,11 +47,11 @@ public class User{
         ProfilePicPath = profilePicPath;
     }
 
-    public int getAccountStatus() {
+    public String getAccountStatus() {
         return accountStatus;
     }
 
-    public void setAccountStatus(int accountStatus) {
+    public void setAccountStatus(String accountStatus) {
         this.accountStatus = accountStatus;
     }
 }
