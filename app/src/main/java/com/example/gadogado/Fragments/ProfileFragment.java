@@ -51,6 +51,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
     private String curr_username, curr_status;
     ProfileAdapter adapt;
     public Uri profileUri = null;
+    Post temp;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://gadogado-5a13c-default-rtdb.firebaseio.com/");
@@ -136,7 +137,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                     postDate = data.child("postDate").getValue().toString();
                     Log.v("profileTest", postId + desc + image + like.toString() +postDate);
 
-                    Post temp = new Post(curr_username, postId, image, desc, like, postDate);
+                    temp = new Post(curr_username, postId, image, desc, like, postDate);
+
                     posts.add(temp);
                 }
 

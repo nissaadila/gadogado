@@ -20,7 +20,6 @@ import java.util.Vector;
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder> {
     Context ctx;
     Vector<Post> post;
-    String url;
 
     public ProfileAdapter(Context ctx){
         this.ctx = ctx;
@@ -40,9 +39,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ProfileAdapter.ViewHolder holder, int position) {
-        url = post.get(position).getImage();
-        Log.v("resiskleee", url);
-        Glide.with(ctx).load(url).into(holder.postPic);
+        holder.url = post.get(position).getImage();
+        Glide.with(ctx).load(holder.url).into(holder.postPic);
         Log.v("resiskleee", "test");
         holder.postDate = post.get(position).getPostDate();
         holder.like = post.get(position).getLike();
@@ -64,7 +62,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         String postId;
         String desc;
         Integer like;
-        String postDate, username;
+        String postDate, username, url, profilePic;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

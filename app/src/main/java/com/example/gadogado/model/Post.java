@@ -2,6 +2,7 @@ package com.example.gadogado.model;
 
 public class Post {
     private String postId;
+    private String profilePic;
     private String username;
     private String image;
     private String desc;
@@ -13,6 +14,16 @@ public class Post {
     }
 
     public Post(String postId, String image, String desc, Integer like, String postDate) {
+        this.postId = postId;
+        this.image = image;
+        this.desc = desc;
+        this.like = like;
+        this.postDate = postDate;
+    }
+
+    public Post(String profilePic, String username, String postId, String image, String desc, Integer like, String postDate) {
+        this.profilePic = profilePic;
+        this.username = username;
         this.postId = postId;
         this.image = image;
         this.desc = desc;
