@@ -85,6 +85,9 @@ public class RegisterActivity extends AppCompatActivity {
             passwordText.setError("password must field");
             passwordText.requestFocus();
         }
+        else if(culinerOrRestaurant.getCheckedRadioButtonId() == -1){
+            Toast.makeText(RegisterActivity.this, "Status must Choose", Toast.LENGTH_SHORT).show();
+        }
         //sending data to firebase
         else{
 
