@@ -175,7 +175,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         progressDialog.setTitle("Uploading Profile Picture...");
         progressDialog.show();
 
-        StorageReference imageRef = storageReference.child("profilePics/" + username + "/" + profileUri.getLastPathSegment());
+        StorageReference imageRef = storageReference.child("profilePics/" + curr_username + "/" + profileUri.getLastPathSegment());
 
         imageRef.putFile(profileUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         username = sPref.getString("username", null);
         status = sPref.getString("status", null);
 
-        switchFragment(new HomeFragment());
+        switchFragment(new HomeFragment(username));
         MeowBottomNavigation bottomNavigation = findViewById(R.id.bottom_navigation);
 
         bottomNavigation.add(new MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home));
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Unit invoke(MeowBottomNavigation.Model model) {
                 if(model.getId() == ID_HOME){
-                    switchFragment(new HomeFragment());
+                    switchFragment(new HomeFragment(username));
                 } else if(model.getId() == ID_ADD){
                     switchFragment(new AddFragment(username));
                 } else if (model.getId() == ID_PROFILE){

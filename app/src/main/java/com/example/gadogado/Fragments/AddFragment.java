@@ -114,7 +114,7 @@ public class AddFragment extends Fragment {
         desc = view.findViewById(R.id.description_addPage);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-        date = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z", Locale.getDefault()).format(new Date());
+        date = new SimpleDateFormat("E, dd MMM yyyy", Locale.getDefault()).format(new Date());
         Log.wtf("date", date);
     }
 
