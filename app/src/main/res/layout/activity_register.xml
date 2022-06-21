@@ -22,74 +22,78 @@
             android:textColor="@color/white"
             android:textSize="36sp" />
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
-            android:text="Username"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:orientation="vertical"
+            android:layout_gravity="center">
 
-        <EditText
-            android:id="@+id/editTextUsernameRegister"
-            android:layout_width="375dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/round_register_login"
-            android:padding="15dp"
-            android:inputType="text"/>
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:text="Email"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Username"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/editTextEmailRegister"
-            android:layout_width="375dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:padding="15dp"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/round_register_login" />
+            <EditText
+                android:id="@+id/editTextUsernameRegister"
+                android:layout_width="375dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/round_register_login"
+                android:padding="15dp"
+                android:inputType="text"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:text="Password"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Email"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/editTextPasswordRegister"
-            android:layout_width="375dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:padding="15dp"
-            android:inputType="textPassword"
-            android:background="@drawable/round_register_login" />
+            <EditText
+                android:id="@+id/editTextEmailRegister"
+                android:layout_width="375dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="5dp"
+                android:padding="15dp"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/round_register_login" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:text="Sign in as..."
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Password"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextPasswordRegister"
+                android:layout_width="375dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="5dp"
+                android:padding="15dp"
+                android:inputType="textPassword"
+                android:background="@drawable/round_register_login" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Sign in as..."
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <RadioGroup
                 android:id="@+id/radioGroupStatusRegister"
@@ -97,7 +101,6 @@
                 android:layout_height="wrap_content"
                 android:checkedButton="@id/status_culiner_hunter"
                 android:orientation="horizontal"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp">
 
                 <RadioButton
@@ -130,6 +133,8 @@
                     android:background="@drawable/status_background_selected"/>
 
             </RadioGroup>
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/buttonRegister"
