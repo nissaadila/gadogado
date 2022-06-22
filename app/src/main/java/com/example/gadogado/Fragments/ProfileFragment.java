@@ -63,9 +63,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         this.curr_status = status;
     }
 
-    String urlProfilePic;
-
-    String desc, image, postDate, postId;
+    String urlProfilePic=null, desc, image, postDate, postId;
     Integer like;
     Vector<Post> posts = new Vector<>();
 
@@ -94,6 +92,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
 
         //get profile pic
         getProfilePic();
+
 
 
         //recycler view
@@ -224,7 +223,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 if(snapshot.hasChild("profilePic")){
                     urlProfilePic = snapshot.child("profilePic").getValue().toString();
                     Log.d("profiletTest", urlProfilePic);
-                    Glide.with(getContext()).load(urlProfilePic).into(profilePic);
+                    if(urlProfilePic!=null){
+                        Glide.with(getContext()).load(urlProfilePic).into(profilePic);
+                    }
                     camera.setVisibility(View.GONE);
                 }
             }

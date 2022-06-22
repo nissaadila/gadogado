@@ -1,13 +1,22 @@
 package com.example.gadogado;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,6 +31,10 @@ public class PostDetail extends AppCompatActivity {
 
     String detail_desc, detail_username, detail_date, detail_img, detail_id;
     Integer detail_like;
+    String urlProfilePic=null;
+
+    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://gadogado-5a13c-default-rtdb.firebaseio.com/");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,32 +58,27 @@ public class PostDetail extends AppCompatActivity {
         desc.setText(detail_desc);
         like.setText(String.valueOf(detail_like));
         username.setText(detail_username);
+        date.setText(detail_date);
         Glide.with(this).load(detail_img).into(img);
 
-        //date
-
-        String date_now = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z", Locale.getDefault()).format(new Date());
-        int dateDiff = (int) getDateDiff(new SimpleDateFormat("dd/MM/yyyy"), detail_date, date_now);
-        if (dateDiff<=1){
-            date.setText("today");
-        }else{
-            date.setText(dateDiff + " days ago");
-        }
-
         //set profile pic
+        databaseReference.child("users").child(detail_username).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild("profilePic")){
+                    urlProfilePic = snapshot.child("profilePic").getValue().toString();
+                    Log.d("profiletTest", urlProfilePic);
+                    if(urlProfilePic!=null){
+                        Glide.with(getApplicationContext()).load(urlProfilePic).into(profilePic);
+                    }
+                }
+            }
 
-
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.v("profiletTest", error.getDetails());
+            }
+        });
     }
-
-    public static long getDateDiff(SimpleDateFormat format, String oldDate, String newDate) {
-        try {
-            return TimeUnit.DAYS.convert(format.parse(newDate).getTime() - format.parse(oldDate).getTime(), TimeUnit.MILLISECONDS);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
-
 
 }
