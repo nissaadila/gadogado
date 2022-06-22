@@ -28,9 +28,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         this.ctx = ctx;
     }
 
-    public void setHome(Vector<Post> post, String urlprofile ) {
+    public void setHome(Vector<Post> post) {
         this.post = post;
-        this.urlprofile = urlprofile;
     }
 
     @NonNull
@@ -43,10 +42,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
         url = post.get(position).getImage();
-        Log.wtf("url photo", url);
-        Log.wtf("url photo", urlprofile);
+        urlprofile = post.get(position).getProfilePic();
         Glide.with(ctx).load(url).into(holder.postPic);
-        Log.v("resiskleee", "test");
         holder.postDate.setText("" + post.get(position).getPostDate());
         holder.like.setText("" + post.get(position).getLike());
         holder.desc.setText("" + post.get(position).getDesc());
@@ -76,7 +73,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             super(itemView);
             cardView = itemView.findViewById(R.id.itemHome);
             postPic = itemView.findViewById(R.id.post_image);
-            profilePic = itemView.findViewById(R.id.profile_image);
+            profilePic = itemView.findViewById(R.id.profile_homeItem);
             postDate = itemView.findViewById(R.id.date_homePage);
             desc = itemView.findViewById(R.id.desc_homePage);
             like = itemView.findViewById(R.id.home_like);
