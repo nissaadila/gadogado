@@ -1,5 +1,6 @@
 package com.example.gadogado.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 
 import com.example.gadogado.HomeAdapter;
 import com.example.gadogado.R;
+import com.example.gadogado.SearchActivity;
 import com.example.gadogado.model.Post;
 import com.example.gadogado.model.User;
 import com.google.firebase.database.DataSnapshot;
@@ -23,7 +25,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Vector;
 
@@ -38,7 +45,7 @@ public class HomeFragment extends Fragment {
 
     String desc, image, postDate, postId;
     Integer like;
-    Vector<Post> posts = new Vector<>();
+    ArrayList<Post> posts = new ArrayList<>();
 
     public HomeFragment(String username) {
         curr_username = username;
@@ -63,7 +70,8 @@ public class HomeFragment extends Fragment {
         }
 
         searchBtn.setOnClickListener(v -> {
-            // ke search page
+            Intent moveSearch = new Intent(getContext(), SearchActivity.class);
+            startActivity(moveSearch);
         });
 
         return view;
@@ -109,6 +117,20 @@ public class HomeFragment extends Fragment {
             temp = new Post(urlProfilePic, username, postId, image, desc, like, postDate);
 
             posts.add(temp);
+
+            Collections.sort(posts, new Comparator<Post>() {
+                DateFormat f = new SimpleDateFormat("E, dd MMM yyyy");
+                @Override
+                public int compare(Post post, Post t1) {
+                    if(post.getPostDate() == null || t1.getPostDate() == null)
+                        return 0;
+                    try {
+                        return -1 * (f.parse(post.getPostDate()).compareTo(f.parse(t1.getPostDate())));
+                    } catch (ParseException e) {
+                        throw new IllegalArgumentException(e);
+                    }
+                }
+            });
         }
     }
 }

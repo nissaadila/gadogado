@@ -15,6 +15,16 @@ public class User{
         this.accountStatus = accountStatus;
     }
 
+    public User(){
+
+    }
+
+    public User(String ProfilePicPath, String usernameUser,String accountStatus){
+        this.ProfilePicPath = ProfilePicPath;
+        this.usernameUser = usernameUser;
+        this.accountStatus = accountStatus;
+    }
+
     public String getUsernameUser() {
         return usernameUser;
     }

@@ -31,14 +31,36 @@
 
     </LinearLayout>
 
-    <SearchView
-        android:id="@+id/search_bar_username"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/round_search"/>
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editTextSearchContoh"
+            android:layout_width="330dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="18dp"
+            android:hint="Search"
+            android:padding="10dp"
+            android:drawableLeft="@drawable/ic_search"
+            android:background="@drawable/round_search"
+            />
+
+        <ImageButton
+            android:id="@+id/search_button_contoh"
+            android:layout_marginStart="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="18sp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/roundedcorner"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_search"
+            app:tint="@color/white" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_search"
