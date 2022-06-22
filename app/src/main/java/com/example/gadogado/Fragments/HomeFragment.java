@@ -1,5 +1,6 @@
 package com.example.gadogado.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 
 import com.example.gadogado.HomeAdapter;
 import com.example.gadogado.R;
+import com.example.gadogado.SearchActivity;
 import com.example.gadogado.model.Post;
 import com.example.gadogado.model.User;
 import com.google.firebase.database.DataSnapshot;
@@ -63,7 +65,8 @@ public class HomeFragment extends Fragment {
         }
 
         searchBtn.setOnClickListener(v -> {
-            // ke search page
+            Intent moveSearch = new Intent(getContext(), SearchActivity.class);
+            startActivity(moveSearch);
         });
 
         return view;
