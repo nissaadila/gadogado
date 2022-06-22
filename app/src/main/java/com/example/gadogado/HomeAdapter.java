@@ -1,6 +1,7 @@
 package com.example.gadogado;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         if(urlprofile != null){
             Glide.with(ctx).load(urlprofile).into(holder.profilePic);
         }
+        holder.temp_username = post.get(position).getUsername();
     }
 
     @Override
@@ -68,6 +70,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         TextView desc;
         TextView like;
         TextView postDate, username;
+        String temp_username;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,11 +81,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             desc = itemView.findViewById(R.id.desc_homePage);
             like = itemView.findViewById(R.id.home_like);
             username = itemView.findViewById(R.id.username_homeItem);
+            username.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            //ke detail
+            //ke view profile page
+            Intent i = new Intent(view.getContext(), ViewProfilePage.class);
+            i.putExtra("username", temp_username);
+            view.getContext().startActivity(i);
         }
     }
 }

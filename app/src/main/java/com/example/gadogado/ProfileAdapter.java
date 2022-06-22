@@ -62,7 +62,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         String postId;
         String desc;
         Integer like;
-        String postDate, username, url, profilePic;
+        String postDate, username, url;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
