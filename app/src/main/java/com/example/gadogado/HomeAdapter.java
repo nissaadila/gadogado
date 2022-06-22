@@ -24,7 +24,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     Context ctx;
     ArrayList<Post> post;
-    String url, urlprofile;
+    String url, urlprofile, date;
 
     public HomeAdapter(Context ctx){
         this.ctx = ctx;
@@ -45,8 +45,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
         url = post.get(position).getImage();
         urlprofile = post.get(position).getProfilePic();
+        date = post.get(position).getPostDate().substring(0,16);
         Glide.with(ctx).load(url).into(holder.postPic);
-        holder.postDate.setText("" + post.get(position).getPostDate());
+        holder.postDate.setText(date);
         holder.like.setText("" + post.get(position).getLike());
         holder.desc.setText("" + post.get(position).getDesc());
         holder.username.setText("" + post.get(position).getUsername());

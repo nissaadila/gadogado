@@ -119,7 +119,7 @@ public class HomeFragment extends Fragment {
             posts.add(temp);
 
             Collections.sort(posts, new Comparator<Post>() {
-                DateFormat f = new SimpleDateFormat("E, dd MMM yyyy");
+                DateFormat f = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss");
                 @Override
                 public int compare(Post post, Post t1) {
                     if(post.getPostDate() == null || t1.getPostDate() == null)
