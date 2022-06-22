@@ -19,7 +19,7 @@ public class User{
 
     }
 
-    public User(String ProfilePicPath, String usernameUser,String accountStatus){
+    public User(String usernameUser,String accountStatus,String ProfilePicPath){
         this.ProfilePicPath = ProfilePicPath;
         this.usernameUser = usernameUser;
         this.accountStatus = accountStatus;

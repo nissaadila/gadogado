@@ -41,14 +41,15 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://gadogado-5a13c-default-rtdb.firebaseio.com/");
         searchTextField = findViewById(R.id.editTextSearchContoh);
         buttonSearch = findViewById(R.id.search_button_contoh);
         recyclerView = findViewById(R.id.rv_search);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        String searchText = searchTextField.getText().toString();
+
         buttonSearch.setOnClickListener(v -> {
+            String searchText = searchTextField.getText().toString();
             firebaseSearch(searchText);
         });
 
@@ -56,10 +57,9 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-    private  void firebaseSearch(String searchText){
+    private void firebaseSearch(String searchText){
         Query firebaseQuery = databaseReference.orderByChild("users").startAt(searchText).endAt(searchText + "\uf8ff");
         FirebaseRecyclerAdapter<User, SearchViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<User, SearchViewHolder>(
-
                 User.class,
                 R.layout.search_item,
                 SearchViewHolder.class,
@@ -68,24 +68,22 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(SearchViewHolder searchViewHolder, User user, int i) {
                 searchViewHolder.setSearch(getApplicationContext(),user.getUsernameUser(), user.getAccountStatus(),user.getProfilePicPath());
-
-
             }
         };
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 
 
-    public class SearchViewHolder extends RecyclerView.ViewHolder{
+    public static class SearchViewHolder extends RecyclerView.ViewHolder{
         View view;
         public SearchViewHolder(@NonNull View itemView) {
             super(itemView);
             view = itemView;
         }
         public void setSearch(Context ctx, String userName,String userStatus, String userImage){
-            TextView username = findViewById(R.id.textViewSearchUsername);
-            TextView status = findViewById(R.id.textViewSearchStatus);
-            ImageView profile = findViewById(R.id.search_profile_image);
+            TextView username = view.findViewById(R.id.textViewSearchUsername);
+            TextView status = view.findViewById(R.id.textViewSearchStatus);
+            ImageView profile = view.findViewById(R.id.search_profile_image);
 
             username.setText(userName);
             status.setText(userStatus);
