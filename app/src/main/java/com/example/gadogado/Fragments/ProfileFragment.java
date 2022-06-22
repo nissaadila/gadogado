@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.gadogado.LoginActivity;
 import com.example.gadogado.ProfileAdapter;
 import com.example.gadogado.R;
 import com.example.gadogado.model.Post;
@@ -48,6 +49,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
     ImageView profilePic;
     RecyclerView rv;
     ImageButton camera;
+    Button logOut;
     private String curr_username, curr_status;
     ProfileAdapter adapt;
     public Uri profileUri = null;
@@ -61,9 +63,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         this.curr_status = status;
     }
 
-    String urlProfilePic;
-
-    String desc, image, postDate, postId;
+    String urlProfilePic=null, desc, image, postDate, postId;
     Integer like;
     Vector<Post> posts = new Vector<>();
 
@@ -76,6 +76,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         status_restaurant = view.findViewById(R.id.profile_status_restaurant);
         profilePic = view.findViewById(R.id.profile_image);
         rv = view.findViewById(R.id.profile_rv);
+        logOut = view.findViewById(R.id.logOutButton);
+        logOut.setOnClickListener(this);
         camera = (ImageButton) view.findViewById(R.id.profile_upload_photo);
         camera.setOnClickListener(this);
         adapt = new ProfileAdapter(getContext());
@@ -90,6 +92,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
 
         //get profile pic
         getProfilePic();
+
 
 
         //recycler view
@@ -113,6 +116,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
             i.setType("image/*");
             i.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(i, 1);
+        }else if(view == logOut){
+            Intent logout = new Intent(getContext(), LoginActivity.class);
+            startActivity(logout);
         }
     }
 
@@ -163,9 +169,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1 && resultCode == Activity.RESULT_OK && data != null){
             profileUri = data.getData();
+            profilePic.setImageURI(profileUri);
             uploadProfilePic();
             getProfilePic();
-
         }
 
     }
@@ -217,7 +223,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 if(snapshot.hasChild("profilePic")){
                     urlProfilePic = snapshot.child("profilePic").getValue().toString();
                     Log.d("profiletTest", urlProfilePic);
-                    Glide.with(getContext()).load(urlProfilePic).into(profilePic);
+                    if(urlProfilePic!=null){
+                        Glide.with(getContext()).load(urlProfilePic).into(profilePic);
+                    }
                     camera.setVisibility(View.GONE);
                 }
             }
