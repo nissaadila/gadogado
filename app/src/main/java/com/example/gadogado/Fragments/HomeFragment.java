@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment {
         rv = view.findViewById(R.id.rv_homePage);
         adapt = new HomeAdapter(getContext());
 
+        posts.clear();
         getPhoto();
 
         if(posts != null){
@@ -78,7 +79,6 @@ public class HomeFragment extends Fragment {
     }
 
     public void getPhoto(){
-        posts.clear();;
         databaseReference.child("users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
