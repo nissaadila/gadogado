@@ -16,19 +16,20 @@ import com.bumptech.glide.Glide;
 import com.example.gadogado.model.Post;
 import com.example.gadogado.model.User;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     Context ctx;
-    Vector<Post> post;
+    ArrayList<Post> post;
     String url, urlprofile;
 
     public HomeAdapter(Context ctx){
         this.ctx = ctx;
     }
 
-    public void setHome(Vector<Post> post) {
+    public void setHome(ArrayList<Post> post) {
         this.post = post;
     }
 
