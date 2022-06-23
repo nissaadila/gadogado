@@ -12,11 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gadogado">
         <activity
-            android:name=".ViewProfilePage"
+            android:name=".SearchingActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
-            android:exported="true"></activity>
+            android:name=".ViewProfilePage"
+            android:exported="false" />
         <activity
             android:name=".PostDetail"
             android:exported="true" />

@@ -16,9 +16,8 @@ import android.widget.ImageButton;
 
 import com.example.gadogado.HomeAdapter;
 import com.example.gadogado.R;
-import com.example.gadogado.SearchActivity;
+import com.example.gadogado.SearchingActivity;
 import com.example.gadogado.model.Post;
-import com.example.gadogado.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +31,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
-import java.util.Vector;
 
 public class HomeFragment extends Fragment {
 
@@ -71,7 +69,7 @@ public class HomeFragment extends Fragment {
         }
 
         searchBtn.setOnClickListener(v -> {
-            Intent moveSearch = new Intent(getContext(), SearchActivity.class);
+            Intent moveSearch = new Intent(getContext(), SearchingActivity.class);
             startActivity(moveSearch);
         });
 
