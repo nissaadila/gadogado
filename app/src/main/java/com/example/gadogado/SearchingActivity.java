@@ -22,6 +22,8 @@ public class SearchingActivity extends AppCompatActivity {
     ArrayList<User> list;
     RecyclerView recyclerView;
     SearchView searchView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +31,15 @@ public class SearchingActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_search);
         searchView = findViewById(R.id.searchView);
 
-        databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://gadogado-5a13c-default-rtdb.firebaseio.com/").child("users");
+        databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://gadogado-5a13c-default-rtdb.firebaseio.com/");
+
+
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
         if (databaseReference != null){
-            databaseReference.addValueEventListener(new ValueEventListener() {
+            databaseReference.child("users").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()){
@@ -61,16 +69,19 @@ public class SearchingActivity extends AppCompatActivity {
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     search(newText);
-                    return true;
+                    return false;
                 }
             });
         }
-
-
-
     }
     private void search(String str){
         ArrayList<User> mylist = new ArrayList<>();
+        for(User object : list){
+            if(object.getAccountStatus().toLowerCase().contains(str.toLowerCase())){
+                mylist.add(object);
+            }
+        }
+
         SearchingAdapter searchingAdapter = new SearchingAdapter(mylist);
         recyclerView.setAdapter(searchingAdapter);
     }
