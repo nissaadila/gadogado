@@ -1,6 +1,7 @@
 package com.example.gadogado;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,7 @@ public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.Sear
 
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
+        holder.curr_username = list.get(position).getUsernameUser();
         holder.username.setText(list.get(position).getUsernameUser());
         holder.status.setText(list.get(position).getAccountStatus());
         urlprofile = list.get(position).getProfilePicPath();
@@ -52,15 +54,23 @@ public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.Sear
         return list.size();
     }
 
-    class SearchViewHolder extends RecyclerView.ViewHolder{
+    class SearchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView username,status;
         ImageView profile;
-        String url;
+        String curr_username;
         public SearchViewHolder(@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.textViewSearchUsername);
             status = itemView.findViewById(R.id.textViewSearchStatus);
             profile = itemView.findViewById(R.id.search_profile_image);
+            username.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent i = new Intent(view.getContext(), ViewProfilePage.class);
+            i.putExtra("username", curr_username);
+            view.getContext().startActivity(i);
         }
     }
 }
