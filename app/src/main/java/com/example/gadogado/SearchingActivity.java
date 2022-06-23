@@ -72,34 +72,35 @@ public class SearchingActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//        if(searchView != null){
-//            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//                @Override
-//                public boolean onQueryTextSubmit(String query) {
-//                    return false;
-//                }
-//
-//                @Override
-//                public boolean onQueryTextChange(String newText) {
-//                    search(newText);
-//                    return false;
-//                }
-//            });
-//        }
-//    }
-//    private void search(String str){
-//        ArrayList<Search> mylist = new ArrayList<>();
-//        for(Search object : list){
-//            if(object.getAccountStatus().toLowerCase().contains(str.toLowerCase())){
-//                mylist.add(object);
-//            }
-//        }
-//
-//        SearchingAdapter searchingAdapter = new SearchingAdapter(mylist);
-//        recyclerView.setAdapter(searchingAdapter);
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(searchView != null){
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    search(newText);
+                    return false;
+                }
+            });
+        }
+    }
+    private void search(String str){
+        ArrayList<Search> mylist = new ArrayList<>();
+        for(Search object : list){
+            if(object.getUsernameUser().toLowerCase().startsWith(str.toLowerCase())){
+                mylist.add(object);
+            }
+        }
+
+        SearchingAdapter searchingAdapter = new SearchingAdapter(getApplicationContext(),mylist);
+        recyclerView.setAdapter(searchingAdapter);
+        searchingAdapter.notifyDataSetChanged();
+    }
 }
