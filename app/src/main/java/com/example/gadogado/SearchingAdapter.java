@@ -29,6 +29,7 @@ public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.Sear
         Log.wtf("data search", String.valueOf(list));
     }
 
+
     @NonNull
     @Override
     public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
