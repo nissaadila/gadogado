@@ -6,8 +6,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.example.gadogado.model.Search;
 import com.example.gadogado.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,12 +18,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class SearchingActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
-    ArrayList<User> list;
+    ArrayList<Search> list;
     RecyclerView recyclerView;
     SearchView searchView;
+    Search temp;
+    String profilepic, status, username;
+
 
 
     @Override
@@ -32,23 +39,27 @@ public class SearchingActivity extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
 
         databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://gadogado-5a13c-default-rtdb.firebaseio.com/");
-
-
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
+//        list.clear();
         if (databaseReference != null){
             databaseReference.child("users").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()){
                         list = new ArrayList<>();
-                        for(DataSnapshot ds : snapshot.getChildren()){
-                            list.add(ds.getValue(User.class));
+                        for(DataSnapshot data: snapshot.getChildren()){
+                            username = data.getKey().toString();
+                            if(data.child("profilePic").exists()){
+                                profilepic = data.child("profilePic").getValue().toString();
+                            }
+                            status = data.child("status").getValue().toString();
+
+                            temp = new Search(username, profilepic, status);
+                            Log.wtf("username", username + profilepic + status);
+                            list.add(temp);
                         }
-                        SearchingAdapter searchingAdapter = new SearchingAdapter(list);
+                        SearchingAdapter searchingAdapter = new SearchingAdapter(getApplicationContext(), list);
                         recyclerView.setAdapter(searchingAdapter);
+                        searchingAdapter.notifyDataSetChanged();
                     }
 
                 }
@@ -59,30 +70,36 @@ public class SearchingActivity extends AppCompatActivity {
                 }
             });
         }
-        if(searchView != null){
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    search(newText);
-                    return false;
-                }
-            });
-        }
     }
-    private void search(String str){
-        ArrayList<User> mylist = new ArrayList<>();
-        for(User object : list){
-            if(object.getAccountStatus().toLowerCase().contains(str.toLowerCase())){
-                mylist.add(object);
-            }
-        }
 
-        SearchingAdapter searchingAdapter = new SearchingAdapter(mylist);
-        recyclerView.setAdapter(searchingAdapter);
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        if(searchView != null){
+//            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//                @Override
+//                public boolean onQueryTextSubmit(String query) {
+//                    return false;
+//                }
+//
+//                @Override
+//                public boolean onQueryTextChange(String newText) {
+//                    search(newText);
+//                    return false;
+//                }
+//            });
+//        }
+//    }
+//    private void search(String str){
+//        ArrayList<Search> mylist = new ArrayList<>();
+//        for(Search object : list){
+//            if(object.getAccountStatus().toLowerCase().contains(str.toLowerCase())){
+//                mylist.add(object);
+//            }
+//        }
+//
+//        SearchingAdapter searchingAdapter = new SearchingAdapter(mylist);
+//        recyclerView.setAdapter(searchingAdapter);
+//    }
 }

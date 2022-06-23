@@ -80,6 +80,9 @@ public class HomeFragment extends Fragment {
         databaseReference.child("users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (getActivity() == null) {
+                    return;
+                }
                 for(DataSnapshot data: snapshot.getChildren()){
                     urlProfilePic = null;
                     if(data.child("post").exists()){

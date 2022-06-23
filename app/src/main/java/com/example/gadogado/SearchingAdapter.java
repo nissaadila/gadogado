@@ -1,6 +1,7 @@
 package com.example.gadogado;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.gadogado.model.Search;
 import com.example.gadogado.model.User;
 
 import java.util.ArrayList;
 
 public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.SearchViewHolder> {
-    ArrayList<User> list;
+    ArrayList<Search> list;
     Context ctx;
     String urlprofile;
-    public SearchingAdapter(ArrayList<User> list){
+
+    public SearchingAdapter(Context ctx, ArrayList<Search> list){
+        this.ctx = ctx;
         this.list = list;
+        Log.wtf("data search", String.valueOf(list));
     }
 
     @NonNull
@@ -36,8 +41,10 @@ public class SearchingAdapter extends RecyclerView.Adapter<SearchingAdapter.Sear
         holder.username.setText(list.get(position).getUsernameUser());
         holder.status.setText(list.get(position).getAccountStatus());
         urlprofile = list.get(position).getProfilePicPath();
+        if(urlprofile != null) {
+        Log.wtf("urlProfile", urlprofile);
         Glide.with(ctx).load(urlprofile).into(holder.profile);
-
+        }
     }
 
     @Override
